@@ -9,16 +9,16 @@ namespace OOPHotel
 
         // Fields
         public string GuestName { get; set; } = "";
-        public DateTime StartDate { get; set; } = DateTime.Today;
+        public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
         // Constructor
+        // Removed DateTime startDate, because it is always today
         public HotelBooking(string guestName, DateTime startDate, int lengthOfStayInDays)
         {
             GuestName = guestName;
             StartDate = startDate;
-            // Calculate end date
-            EndDate = startDate.AddDays(lengthOfStayInDays);
+            EndDate = startDate.AddDays(lengthOfStayInDays); // Calculate end date
         }
 
         // Methods
@@ -37,6 +37,30 @@ namespace OOPHotel
         public void AddPerson()
         {
             Console.WriteLine();
+        }
+
+        /* string dateString = "2023-09-25";
+DateTime parsedDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", null);
+Console.WriteLine($"Parsed date: {parsedDate.ToShortDateString()}");
+         */
+
+
+        // Get dates
+        public void GetDates()
+        {
+            Console.WriteLine("Vilken dag vill du börja din vistelse? (yyyy-MM-dd)");
+            string dateString = Console.ReadLine();
+            DateTime parsedDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", null);
+            // Set StartDate to user input
+            StartDate = parsedDate;
+
+            Console.WriteLine("Hur många dagar vill du stanna? Svara i heltal.");
+            string userInput = Console.ReadLine();
+
+            if (int.TryParse(userInput, out int daysToStay))
+            {
+                End
+            }    
         }
 
         // Print booking information
