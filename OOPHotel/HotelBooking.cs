@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Globalization;
 
 namespace OOPHotel
 {
@@ -43,23 +41,34 @@ Console.WriteLine($"Parsed date: {parsedDate.ToShortDateString()}");
         // Get dates method
         public void GetDates()
         {
-            while(true) // loop to see if the user enters in format yyyy-MM-dd
+            Console.WriteLine("Vilken dag vill du börja din vistelse? (yyyy-MM-dd)");
+
+            // Check start date
+            while (true) // loop to see if the user enters in format yyyy-MM-dd
             {
-                Console.WriteLine("Vilken dag vill du började din vistelse? (yyyy-MM-dd)");
                 string dateString = Console.ReadLine();
 
-                if(dateString == )
+                // what to parse, what format to expect, which culture to use, special date/time rules, where to put result
+                if (DateTime.TryParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
                 {
-
+                    // Set StartDate to user input
+                    StartDate = parsedDate;
+                    break;
                 }
-                DateTime parsedDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", null);
-                // Set StartDate to user input
-                StartDate = parsedDate;
+                else
+                {
+                    Console.WriteLine("Skriv in i formatet yyyy-MM-dd");
+                    continue;
+                }
 
-                Console.WriteLine("Hur många dagar vill du stanna? Svara i heltal.");
+                // DateTime parsedDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", null);
+
+                
             }
-            
-            while(true)
+
+            // How many days to stay?
+            Console.WriteLine("Hur många dagar vill du stanna? Svara i heltal.");
+            while (true)
             {
                 string userInput = Console.ReadLine();
 
@@ -67,16 +76,23 @@ Console.WriteLine($"Parsed date: {parsedDate.ToShortDateString()}");
                 {
                     // Calculate end date
                     EndDate = StartDate.AddDays(daysToStay);
+                    break;
                 }
                 else
                 {
                     Console.WriteLine("Skriv in ett heltal.");
+                    continue;
                 }
             }
             
         }
 
         // Print info method
+        public void PrintInfo()
+        {
+            Console.WriteLine($"The visitor {GuestName} will arrive {StartDate} and will stay until {EndDate}.");
+        }
+
 
     }
 }
