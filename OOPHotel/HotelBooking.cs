@@ -13,30 +13,25 @@ namespace OOPHotel
         public DateTime EndDate { get; set; }
 
         // Constructor
-        // Removed DateTime startDate, because it is always today
         public HotelBooking(string guestName, DateTime startDate, int lengthOfStayInDays)
         {
             GuestName = guestName;
             StartDate = startDate;
-            EndDate = startDate.AddDays(lengthOfStayInDays); // Calculate end date
+            // EndDate = startDate.AddDays(lengthOfStayInDays); // Calculate end date
         }
-
-        // Methods
-        /*GreetPerson() = Metoden ska hälsa personen välkommen
-        AddPerson() = Metoden ska ta emot användaruppgifter, namn, ålder, kön. 
-        GetDates() = Metoden ska ta emot vilka datum gästen vill boka. 
-         */
 
         // Greet guest
         public void GreetPerson()
         {
-            Console.WriteLine($"Welcome to the OOP Hotel!");
+            Console.WriteLine("Welcome to the OOP Hotel!");
         }
 
-        // Add guest
-        public void AddPerson()
+        // Get guest name
+        public void GetName()
         {
-            Console.WriteLine();
+            Console.WriteLine("Please enter your name");
+            string name = Console.ReadLine();
+            GuestName = name;
         }
 
         /* string dateString = "2023-09-25";
@@ -45,25 +40,43 @@ Console.WriteLine($"Parsed date: {parsedDate.ToShortDateString()}");
          */
 
 
-        // Get dates
+        // Get dates method
         public void GetDates()
         {
-            Console.WriteLine("Vilken dag vill du börja din vistelse? (yyyy-MM-dd)");
-            string dateString = Console.ReadLine();
-            DateTime parsedDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", null);
-            // Set StartDate to user input
-            StartDate = parsedDate;
-
-            Console.WriteLine("Hur många dagar vill du stanna? Svara i heltal.");
-            string userInput = Console.ReadLine();
-
-            if (int.TryParse(userInput, out int daysToStay))
+            while(true) // loop to see if the user enters in format yyyy-MM-dd
             {
-                End
-            }    
+                Console.WriteLine("Vilken dag vill du började din vistelse? (yyyy-MM-dd)");
+                string dateString = Console.ReadLine();
+
+                if(dateString == )
+                {
+
+                }
+                DateTime parsedDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", null);
+                // Set StartDate to user input
+                StartDate = parsedDate;
+
+                Console.WriteLine("Hur många dagar vill du stanna? Svara i heltal.");
+            }
+            
+            while(true)
+            {
+                string userInput = Console.ReadLine();
+
+                if (int.TryParse(userInput, out int daysToStay))
+                {
+                    // Calculate end date
+                    EndDate = StartDate.AddDays(daysToStay);
+                }
+                else
+                {
+                    Console.WriteLine("Skriv in ett heltal.");
+                }
+            }
+            
         }
 
-        // Print booking information
+        // Print info method
 
     }
 }
