@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Xml.Linq;
 
 namespace OOPHotel
 {
@@ -11,7 +12,7 @@ namespace OOPHotel
         public DateTime EndDate { get; set; }
 
         // Constructor
-        public HotelBooking(string guestName, DateTime startDate, int lengthOfStayInDays)
+        public HotelBooking(string guestName, DateTime startDate)
         {
             GuestName = guestName;
             StartDate = startDate;
@@ -21,22 +22,29 @@ namespace OOPHotel
         // Greet guest
         public void GreetPerson()
         {
-            Console.WriteLine("Welcome to the OOP Hotel!");
+            Console.WriteLine("Välkommen till OOP-Hotellet!");
         }
 
         // Get guest name
         public void GetName()
         {
-            Console.WriteLine("Please enter your name");
-            string name = Console.ReadLine();
-            GuestName = name;
+            Console.WriteLine("Skriv in ditt namn");
+            while (true)
+            {
+                string userInput = Console.ReadLine();
+
+                if(int.TryParse(userInput, out int number))
+                {
+                    Console.WriteLine("Namn kan inte vara en siffra.");
+                    continue;
+                }
+                else
+                {
+                    GuestName = userInput;
+                    break;
+                }
+            }
         }
-
-        /* string dateString = "2023-09-25";
-DateTime parsedDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", null);
-Console.WriteLine($"Parsed date: {parsedDate.ToShortDateString()}");
-         */
-
 
         // Get dates method
         public void GetDates()
@@ -60,10 +68,6 @@ Console.WriteLine($"Parsed date: {parsedDate.ToShortDateString()}");
                     Console.WriteLine("Skriv in i formatet yyyy-MM-dd");
                     continue;
                 }
-
-                // DateTime parsedDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", null);
-
-                
             }
 
             // How many days to stay?
@@ -87,10 +91,84 @@ Console.WriteLine($"Parsed date: {parsedDate.ToShortDateString()}");
             
         }
 
+        // Change booking
+        public void ChangeBooking()
+        {
+            bool wantToExit = false;
+            
+            while(true)
+            {
+
+
+                if (wantToExit = true)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Vill du ändra något i bokningen? Skriv siffra.");
+                    Console.WriteLine("1. Lägga till dagar\n2. Ta bort dagar\n3. Ändra startdatum\n4. Ändra slutdatum\n5. Ta bort bokning\n0. Exit");
+                    string userInput = Console.ReadLine();
+
+                    // Add days
+                    switch (userInput)
+                    {
+                        case "1":
+
+                            Console.WriteLine("Hur hur många dagar vill du lägga till?");
+                            while (true)
+                            {
+                                userInput = Console.ReadLine();
+
+                                if (int.TryParse(userInput, out int daysToAdd))
+                                {
+                                    EndDate = EndDate.AddDays(daysToAdd);
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Skriv ett heltal.");
+                                    continue;
+                                }
+                            }
+
+                            break;
+
+
+                        case "0":
+
+                            wantToExit = true;
+                            break;
+
+                    }
+
+
+
+
+
+
+                    // Delete days
+
+
+                    // Change start date
+
+
+                    // Change end date
+
+
+                    // Remove booking
+                }
+
+
+            }
+        }
+
+        // Calculate price
+
         // Print info method
         public void PrintInfo()
         {
-            Console.WriteLine($"The visitor {GuestName} will arrive {StartDate} and will stay until {EndDate}.");
+            Console.WriteLine($"Besökaren {GuestName} bor på hotellet mellan {StartDate.ToShortDateString()} och {EndDate.ToShortDateString()}.");
         }
 
 
