@@ -4,7 +4,15 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hej");
+
+            // Default values. Doesn't matter. Only to put something there
+            var hotelBooking1 = new HotelBooking("", DateTime.Now);
+
+            hotelBooking1.GreetPerson();
+            hotelBooking1.GetName();
+            hotelBooking1.GetDates();
+            hotelBooking1.PrintInfo();
+
         }
     }
 }
