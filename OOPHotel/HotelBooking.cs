@@ -1,18 +1,19 @@
-﻿using System.Globalization;
-using System.Xml.Linq;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace OOPHotel
 {
     internal class HotelBooking
     {
 
-        // Properties
+        // Fields
         public string GuestName { get; set; } = "";
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
         // Constructor
-        public HotelBooking(string guestName, DateTime startDate)
+        public HotelBooking(string guestName, DateTime startDate, int lengthOfStayInDays)
         {
             GuestName = guestName;
             StartDate = startDate;
@@ -22,57 +23,43 @@ namespace OOPHotel
         // Greet guest
         public void GreetPerson()
         {
-            Console.WriteLine("Välkommen till OOP-Hotellet!");
+            Console.WriteLine("Welcome to the OOP Hotel!");
         }
 
         // Get guest name
         public void GetName()
         {
-            Console.WriteLine("Skriv in ditt namn");
-            while (true)
-            {
-                string userInput = Console.ReadLine();
-
-                if(int.TryParse(userInput, out int number))
-                {
-                    Console.WriteLine("Namn kan inte vara en siffra.");
-                    continue;
-                }
-                else
-                {
-                    GuestName = userInput;
-                    break;
-                }
-            }
+            Console.WriteLine("Please enter your name");
+            string name = Console.ReadLine();
+            GuestName = name;
         }
+
+        /* string dateString = "2023-09-25";
+DateTime parsedDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", null);
+Console.WriteLine($"Parsed date: {parsedDate.ToShortDateString()}");
+         */
+
 
         // Get dates method
         public void GetDates()
         {
-            Console.WriteLine("Vilken dag vill du börja din vistelse? (yyyy-MM-dd)");
-
-            // Check start date
-            while (true) // loop to see if the user enters in format yyyy-MM-dd
+            while(true) // loop to see if the user enters in format yyyy-MM-dd
             {
+                Console.WriteLine("Vilken dag vill du började din vistelse? (yyyy-MM-dd)");
                 string dateString = Console.ReadLine();
 
-                // what to parse, what format to expect, which culture to use, special date/time rules, where to put result
-                if (DateTime.TryParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+                if(dateString == )
                 {
-                    // Set StartDate to user input
-                    StartDate = parsedDate;
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Skriv in i formatet yyyy-MM-dd");
-                    continue;
-                }
-            }
 
-            // How many days to stay?
-            Console.WriteLine("Hur många dagar vill du stanna? Svara i heltal.");
-            while (true)
+                }
+                DateTime parsedDate = DateTime.ParseExact(dateString, "yyyy-MM-dd", null);
+                // Set StartDate to user input
+                StartDate = parsedDate;
+
+                Console.WriteLine("Hur många dagar vill du stanna? Svara i heltal.");
+            }
+            
+            while(true)
             {
                 string userInput = Console.ReadLine();
 
@@ -80,23 +67,16 @@ namespace OOPHotel
                 {
                     // Calculate end date
                     EndDate = StartDate.AddDays(daysToStay);
-                    break;
                 }
                 else
                 {
                     Console.WriteLine("Skriv in ett heltal.");
-                    continue;
                 }
             }
             
         }
-        
-        // Print info method
-        public void PrintInfo()
-        {
-            Console.WriteLine($"Besökaren {GuestName} bor på hotellet mellan {StartDate.ToShortDateString()} och {EndDate.ToShortDateString()}.");
-        }
 
+        // Print info method
 
     }
 }
