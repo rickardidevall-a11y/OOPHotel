@@ -6,7 +6,7 @@ namespace OOPHotel
     internal class HotelBooking
     {
 
-        // Fields
+        // Properties
         public string GuestName { get; set; } = "";
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -90,81 +90,7 @@ namespace OOPHotel
             }
             
         }
-
-        // Change booking
-        public void ChangeBooking()
-        {
-            bool wantToExit = false;
-            
-            while(true)
-            {
-
-
-                if (wantToExit = true)
-                {
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Vill du ändra något i bokningen? Skriv siffra.");
-                    Console.WriteLine("1. Lägga till dagar\n2. Ta bort dagar\n3. Ändra startdatum\n4. Ändra slutdatum\n5. Ta bort bokning\n0. Exit");
-                    string userInput = Console.ReadLine();
-
-                    // Add days
-                    switch (userInput)
-                    {
-                        case "1":
-
-                            Console.WriteLine("Hur hur många dagar vill du lägga till?");
-                            while (true)
-                            {
-                                userInput = Console.ReadLine();
-
-                                if (int.TryParse(userInput, out int daysToAdd))
-                                {
-                                    EndDate = EndDate.AddDays(daysToAdd);
-                                    break;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Skriv ett heltal.");
-                                    continue;
-                                }
-                            }
-
-                            break;
-
-
-                        case "0":
-
-                            wantToExit = true;
-                            break;
-
-                    }
-
-
-
-
-
-
-                    // Delete days
-
-
-                    // Change start date
-
-
-                    // Change end date
-
-
-                    // Remove booking
-                }
-
-
-            }
-        }
-
-        // Calculate price
-
+        
         // Print info method
         public void PrintInfo()
         {

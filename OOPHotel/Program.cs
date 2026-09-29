@@ -11,7 +11,6 @@
             hotelBooking1.GreetPerson();
             hotelBooking1.GetName();
             hotelBooking1.GetDates();
-            hotelBooking1.ChangeBooking();
             hotelBooking1.PrintInfo();
 
         }
