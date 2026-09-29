@@ -13,6 +13,24 @@
             hotelBooking1.GetDates();
             hotelBooking1.PrintInfo();
 
+
+            Employee employee = new Employee
+            {
+                Name = "Elvis Presley",
+                Age = 35,
+                EmployeeId = "E001",
+                StartDate = new DateTime(2022, 3, 15),
+                Salary = 30000m,
+                JobTitle = "Receptionist",
+                Department = "Front Desk"
+            }; 
+            
+            Console.WriteLine("\nEmployee:");
+            employee.PrintInfo();
+            employee.Introduce();
+            employee.Work();
+
+
         }
     }
 }
